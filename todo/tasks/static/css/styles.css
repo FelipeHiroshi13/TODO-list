@@ -24,6 +24,11 @@
 }
 
 /* Botão de adicionar */
+
+.add-link{
+    text-decoration: none;
+}
+
 .add-div{
     background-color: rgb(9, 23, 219);
     cursor: pointer;
@@ -101,4 +106,31 @@ footer p{
     text-align: center;
     top: 50%;
     position: relative;
+}
+
+/* Messages */
+
+ul.messages{
+    padding: 0;
+}
+
+ul.message li{
+    list-style: none;
+}
+
+/* paginacao */
+
+.pagination {
+    margin-bottom: 20px;
+}
+
+.step-links {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.step-links .current{
+    margin-left: 5px;
+    margin-right: 5px;
 }

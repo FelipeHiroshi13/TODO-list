@@ -5,39 +5,50 @@
 {% block content %}
 <div class="offset-1 col-10 list-div">
     <h1>Lista de Tarefas</h1>
-    <div class="col-2 add-div">
-        <i class="fas fa-plus"></i> Adicionar Tarefa
-    </div>
+    <a id="add-link" href="newtask/">
+        <div class="col-2 add-div">
+            <i class="fas fa-plus"></i> Adicionar Tarefa
+        </div>
+    </a>
     <div class="col-9 search-div">
-        <input class= "form-control" Etype="text" id="search" name="search" placeholder="Digite o nome da tarefa para buscar">
+        <input class="form-control" Etype="text" id="search" name="search"
+            placeholder="Digite o nome da tarefa para buscar">
         <i class="fas fa-search"></i>
     </div>
-    <ul class="task-list">
-        <li class="task-item">
-            <span>Título da tarefa</span>
-            <spam><i class="fas fa-trash"></i></spam>
-            <spam><i class="fas fa-edit"></i></spam>
-        </li>
-        <li class="task-item">
-            <span>Título da tarefa</span>
-            <spam><i class="fas fa-trash"></i></spam>
-            <spam><i class="fas fa-edit"></i></spam>
-        </li>
-        <li class="task-item">
-            <span>Título da tarefa</span>
-            <spam><i class="fas fa-trash"></i></spam>
-            <spam><i class="fas fa-edit"></i></spam>
-        </li>
-        <li class="task-item">
-            <span>Título da tarefa</span>
-            <spam><i class="fas fa-trash"></i></spam>
-            <spam><i class="fas fa-edit"></i></spam>
-        </li>
-        <li class="task-item">
-            <span>Título da tarefa</span>
-            <spam><i class="fas fa-trash"></i></spam>
-            <spam><i class="fas fa-edit"></i></spam>
-        </li>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %}>{{ message}}</li>
+        {% endfor %}
     </ul>
+    {% endif%}
+    <ul class="task-list">
+        {% for task in tasks %}
+        <li class="task-item">
+            <span><a href="task/{{task.id}}">{{task.title}}</a></span>
+            <a href="delete/{{task.id}}" class="delete-btn">
+                <spam><i class="fas fa-trash"></i></spam>
+            </a>
+            <a href="edit/{{task.id}}">
+                <spam><i class="fas fa-edit"></i></spam>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+    <div class="pagination">
+        <span class="step-links">
+            {% if tasks.has_previous %}
+                <a href="?page={{ tasks.previous_page_number }}"><i class="fas fa-arrow-left"></i></a>
+            {% endif %}
+
+            <span class="current">
+                {{ tasks.number }} de {{tasks.paginator.num_pages}}
+            </span>
+
+            {% if tasks.has_next %}
+                <a href="?page={{ tasks.next_page_number }}"><i class="fas fa-arrow-right"></i></a>
+            {% endif %}
+        </span>
+    </div>
 </div>
 {% endblock %}
