@@ -85,7 +85,7 @@
 
 .fas.fa-trash, .fas.fa-edit{
     cursor: pointer;
-    margin: 5px;
+    margin: 30px;
     font-size: 20px;
     float: right
 }
@@ -144,4 +144,9 @@ ul.message li{
 
 .auth-card{
     margin-bottom: 30px;
+}
+
+.change-form-p{
+    margin-top: 30px;
+    text-align: center;
 }
